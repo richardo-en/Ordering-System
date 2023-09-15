@@ -1,0 +1,27 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Tag Color</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tag in tags_type %}
+        <tr>
+            <th>{{ tag.name }}</th>
+            <td><p class="btn {{ tag.color }}">Color</p></td>
+            <td>
+                <div>
+                    <a href="{% url 'edit_type' tag.id %}"><button
+                            class="btn btn-sm btn-primary">Edit</button></a>
+                    <form method="post" action="{% url 'delete_type' tag.id %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-danger"
+                            onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

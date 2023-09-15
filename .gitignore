@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# Database
+*.sqlite3
+
+# IDE/Text editor specific files
+.vscode/
+.idea/

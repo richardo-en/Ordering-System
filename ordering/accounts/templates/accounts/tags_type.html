@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<section class="d-flex flex-row mb-5">
+    <div style="width: 30vw;">{% include 'accounts/admin_panel.html' %}</div>
+    <div style="width: 70vw;">
+        <h1>Type Tags</h1>
+        {% include 'accounts/type_table.html' %}
+    </div>
+</section>
+<section class="d-flex flex-column align-items-center">
+    <h2>New Tag</h2>
+    {% include 'accounts/tags_form.html' %}
+</section>
+
+{% endblock %}

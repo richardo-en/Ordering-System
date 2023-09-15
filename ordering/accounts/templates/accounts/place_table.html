@@ -1,0 +1,25 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Place</th>
+            <th scope="col">Color</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for tag in tags_place %}
+    <tr>
+        <th>{{ tag.name }}</th>
+        <td><p class="btn {{ tag.color }}">Tag Color</p></td>
+        <th>
+            <div>
+                <a href="{% url 'edit_place' tag.id %}" ><button class="btn btn-sm btn-primary">Edit</button></a>
+                <form method="post" action="{% url 'delete_place' tag.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                </form>
+            </div>
+        </th>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
