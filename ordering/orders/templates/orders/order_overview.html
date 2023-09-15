@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% block content %}
+<section class="d-flex flex-column mb-3">
+    <div class="d-flex">
+        {% include 'orders/orders_navbar.html' %}
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Overall status</th>
+                    <th scope="col">Order type</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Mobile phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <th>{{ order.OVERALL_STATUS }}</th>
+                    <th>{{ order.ORDER_TYPE }}</th>
+                    <th>{{ order.name }}</th>
+                    <th>{{ order.price }}</th>
+                    <th>{{ order.mobile_phone }}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

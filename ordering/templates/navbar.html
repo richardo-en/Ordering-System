@@ -6,18 +6,21 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         {% if user.is_authenticated %}
-        {% if user.role == 'Admin' %}
-        <li class="nav-item">
-          <a class="nav-link" href="/manage/admin/">Admin panel</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="#">Orders table</a>
-        </li>
-        {% endif %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Logout</a> <!-- Use the 'logout' URL name -->
-        </li>
+          {% if user.role == 'Admin' %}
+          <li class="nav-item">
+            <a class="nav-link" href="/manage/admin/">Admin panel</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Orders table</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a> <!-- Use the 'logout' URL name -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/order_overview">Orders</a> <!-- Use the 'logout' URL name -->
+          </li>
         {% else %}
         <li class="nav-item">
           <a class="nav-link" href="/login">Login</a>

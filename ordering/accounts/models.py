@@ -22,18 +22,6 @@ class TagColors(models.Model):
         ]
     
     color_class = models.CharField(max_length=20, choices=COLOR_CHOICE, default=BLUE)
-    
-# class OverallOrderStatus(models.Model):
-
-#     DONE = "Done"
-#     INPROGRESS = "In progress"
-#     CANCELED = "Canceled"
-
-#     ROLE_CHOICES = [
-#         (DONE, "Done"),
-#         (INPROGRESS, "In progress"),
-#         (CANCELED, "Canceled")
-#         ]   
 
 class OrderPlace(models.Model):
     name = models.CharField(max_length=40)
@@ -54,7 +42,9 @@ class Goods(models.Model):
     place = models.ForeignKey(OrderPlace, blank=True, on_delete= models.SET_NULL, null=True)
     type = models.ForeignKey(OrderType, blank=True, on_delete= models.SET_NULL, null=True)
     price = models.FloatField()
-    count = models.IntegerField(blank=True)
+    total_count = models.IntegerField(null=True,  blank=True)
+    count = models.IntegerField()
+    note = models.CharField(max_length = 200, null=True, blank = True)
 
     READY = "Ready"
     INPROGRESS = "In progress"
