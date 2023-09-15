@@ -10,3 +10,5 @@ venv/
 # IDE/Text editor specific files
 .vscode/
 .idea/
+
+./migrations
