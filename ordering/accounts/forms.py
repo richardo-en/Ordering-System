@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import CustomUser, Goods, OrderPlace, OrderType, TagColors
+from .models import CustomUser, Goods, OrderPlace, OrderType, TagColors, Tables
 
 class CreateUserForm(UserCreationForm):
 
@@ -35,3 +35,8 @@ class TypeForm(forms.ModelForm):
         widgets = {
             'color': forms.Select(choices=TagColors.COLOR_CHOICE)
         }
+
+class TableForm(forms.ModelForm):
+    class Meta:
+        model = Tables
+        fields = ['name', 'number']

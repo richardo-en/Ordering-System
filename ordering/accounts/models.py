@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator
+
     
 class TagColors(models.Model):
     BLUE = "btn-primary"  
@@ -43,7 +45,7 @@ class Goods(models.Model):
     type = models.ForeignKey(OrderType, blank=True, on_delete= models.SET_NULL, null=True)
     price = models.FloatField()
     total_count = models.IntegerField(null=True,  blank=True)
-    count = models.IntegerField()
+    count = models.IntegerField(validators=[MinValueValidator(1)])
     note = models.CharField(max_length = 200, null=True, blank = True)
 
     READY = "Ready"
@@ -71,3 +73,7 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username 
+    
+class Tables(models.Model):
+    name = models.CharField(max_length=50)
+    number = models.IntegerField(validators=[MinValueValidator(1)])

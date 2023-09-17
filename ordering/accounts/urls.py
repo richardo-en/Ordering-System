@@ -21,6 +21,9 @@ urlpatterns = [
     path('manage/admin/tags/type/', views.order_type, name='tags_type'),
     path('manage/admin/tags/edit_type/<int:tag_id>/', views.edit_type, name='edit_type'),
     path('manage/admin/tags/type/delete/<int:tag_id>/', views.delete_type, name='delete_type'),
+    path('manage/admin/tables/', views.admin_tables, name='tebles'),#
+    path('manage/admin/edit_table/<int:table_id>/', views.edit_table, name='edit_table'),
+    path('manage/admin/delete_table/<int:table_id>/', views.delete_table, name='delete_table'),#
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
 ]

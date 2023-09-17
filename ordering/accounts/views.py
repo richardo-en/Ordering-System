@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import CreateUserForm, CreateNewUser, GoodsForm, TypeForm, PlaceForm
+from .forms import CreateUserForm, CreateNewUser, GoodsForm, TypeForm, PlaceForm, TableForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
-from .models import CustomUser, Goods, OrderPlace, OrderType
+from .models import CustomUser, Goods, OrderPlace, OrderType, Tables
 from .decorators import admin_required
 
 #Home link
@@ -180,3 +180,35 @@ def delete_type(request, tag_id):
         type = get_object_or_404(OrderType, id=tag_id)
         type.delete()
         return redirect('tags')
+    
+#Admin tables
+@admin_required
+def admin_tables(request):
+    if request.method == "POST":
+        form = TableForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/manage/admin/tables/')
+    else:
+        tables = Tables.objects.all()
+        form = TableForm()
+        return render(request, 'accounts/tables.html', {'tables' : tables, 'form': form})
+
+@admin_required
+def edit_table(request, table_id):
+    table = get_object_or_404(Tables, id=table_id)
+    if request.method == 'POST':
+        form = TableForm(request.POST, instance=table)
+        if form.is_valid():
+            form.save()
+        return redirect('/manage/admin/tables/')
+    else:
+        form = TableForm(instance=table)
+        return render(request, 'accounts/edit_table.html', {'form' : form, 'table': table})
+
+@admin_required
+def delete_table(request, table_id):
+    if request.method == "POST":
+        table = get_object_or_404(Tables, id=table_id)
+        table.delete()
+        return redirect('/manage/admin/tables/')
